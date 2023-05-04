@@ -1,27 +1,33 @@
 'use strict';
 
-export const getProductsList = async (event) => {
+module.exports.getProductsList = async (event) => {
 	return {
 		statusCode: 200,
-		body: [
+		headers: {
+			'Access-Control-Allow-Origin': '*',
+		},
+		body: JSON.stringify([
 			{
-				productName: 'Book',
-				price: 1,
+				id: 1,
+				product: 'Book',
 			},
 			{
-				productName: 'Magazine',
-				price: 2,
+				id: 2,
+				product: 'Magazine',
 			},
-		],
+		]),
 	};
 };
 
-export const getProductsById = async (event) => {
+module.exports.getProductsById = async (event) => {
+	const { productId } = event.pathParameters;
+
 	return {
 		statusCode: 200,
-		body: {
+		body: JSON.stringify({
+			id: productId,
 			productName: 'Book',
 			price: 0,
-		},
+		}),
 	};
 };
