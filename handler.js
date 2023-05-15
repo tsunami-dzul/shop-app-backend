@@ -35,6 +35,17 @@ const productQuery = async (id) => {
 	return queryProductsResults;
 };
 
+const addProduct = async (item) => {
+	const addProductResult = await dynamo
+		.put({
+			TableName: process.env.PRODUCTS_TABLE_NAME,
+			Item: item,
+		})
+		.promise();
+
+	return addProductResult;
+};
+
 module.exports.getProductsList = async (event) => {
 	const productsScan = await listProductsScan();
 	const stocksScan = await listStocksScan();
@@ -49,7 +60,7 @@ module.exports.getProductsList = async (event) => {
 			title: product.title,
 			description: product.description,
 			price: product.price,
-			count: stock.count,
+			count: stock ? stock.count : 0,
 		};
 	});
 
@@ -84,5 +95,15 @@ module.exports.getProductsById = async (event) => {
 	return {
 		statusCode: 200,
 		body: JSON.stringify(products),
+	};
+};
+
+module.exports.createProducts = async (event) => {
+	const product = event.body;
+	const addProductResult = await addProduct(JSON.parse(product));
+
+	return {
+		statusCode: 200,
+		body: JSON.stringify(addProductResult),
 	};
 };
