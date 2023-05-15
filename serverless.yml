@@ -26,9 +26,9 @@ provider:
   stage: dev
   region: us-west-1
 
-# you can add statements to the Lambda function's IAM Role here
-#  iam:
-#    role:
+  # you can add statements to the Lambda function's IAM Role here
+  iam:
+    role: arn:aws:iam::334657772509:role/DynamoDBLambdaAccessRole
 #      statements:
 #        - Effect: "Allow"
 #          Action:
@@ -59,6 +59,9 @@ provider:
 functions:
   getProductsList:
     handler: handler.getProductsList
+    environment:
+      PRODUCTS_TABLE_NAME: products
+      STOCKS_TABLE_NAME: stocks
     events:
       - http:
           path: products
@@ -66,6 +69,9 @@ functions:
           cors: true
   getProductsById:
     handler: handler.getProductsById
+    environment:
+      PRODUCTS_TABLE_NAME: products
+      STOCKS_TABLE_NAME: stocks
     events:
       - http:
           path: products/{productId}

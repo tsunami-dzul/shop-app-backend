@@ -9,6 +9,9 @@
       "runtime": "nodejs12.x",
       "stage": "dev",
       "region": "us-west-1",
+      "iam": {
+        "role": "arn:aws:iam::334657772509:role/DynamoDBLambdaAccessRole"
+      },
       "versionFunctions": true,
       "compiledCloudFormationTemplate": {
         "AWSTemplateFormatVersion": "2010-09-09",
@@ -95,84 +98,6 @@
               "LogGroupName": "/aws/lambda/shop-app-backend-dev-getProductsById"
             }
           },
-          "IamRoleLambdaExecution": {
-            "Type": "AWS::IAM::Role",
-            "Properties": {
-              "AssumeRolePolicyDocument": {
-                "Version": "2012-10-17",
-                "Statement": [
-                  {
-                    "Effect": "Allow",
-                    "Principal": {
-                      "Service": [
-                        "lambda.amazonaws.com"
-                      ]
-                    },
-                    "Action": [
-                      "sts:AssumeRole"
-                    ]
-                  }
-                ]
-              },
-              "Policies": [
-                {
-                  "PolicyName": {
-                    "Fn::Join": [
-                      "-",
-                      [
-                        "shop-app-backend",
-                        "dev",
-                        "lambda"
-                      ]
-                    ]
-                  },
-                  "PolicyDocument": {
-                    "Version": "2012-10-17",
-                    "Statement": [
-                      {
-                        "Effect": "Allow",
-                        "Action": [
-                          "logs:CreateLogStream",
-                          "logs:CreateLogGroup",
-                          "logs:TagResource"
-                        ],
-                        "Resource": [
-                          {
-                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/shop-app-backend-dev*:*"
-                          }
-                        ]
-                      },
-                      {
-                        "Effect": "Allow",
-                        "Action": [
-                          "logs:PutLogEvents"
-                        ],
-                        "Resource": [
-                          {
-                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/shop-app-backend-dev*:*:*"
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                }
-              ],
-              "Path": "/",
-              "RoleName": {
-                "Fn::Join": [
-                  "-",
-                  [
-                    "shop-app-backend",
-                    "dev",
-                    {
-                      "Ref": "AWS::Region"
-                    },
-                    "lambdaRole"
-                  ]
-                ]
-              }
-            }
-          },
           "GetProductsListLambdaFunction": {
             "Type": "AWS::Lambda::Function",
             "Properties": {
@@ -180,19 +105,20 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/shop-app-backend/dev/1683163987866-2023-05-04T01:33:07.866Z/shop-app-backend.zip"
+                "S3Key": "serverless/shop-app-backend/dev/1684181826737-2023-05-15T20:17:06.737Z/shop-app-backend.zip"
               },
               "Handler": "handler.getProductsList",
               "Runtime": "nodejs12.x",
               "FunctionName": "shop-app-backend-dev-getProductsList",
               "MemorySize": 1024,
               "Timeout": 6,
-              "Role": {
-                "Fn::GetAtt": [
-                  "IamRoleLambdaExecution",
-                  "Arn"
-                ]
-              }
+              "Environment": {
+                "Variables": {
+                  "PRODUCTS_TABLE_NAME": "products",
+                  "STOCKS_TABLE_NAME": "stocks"
+                }
+              },
+              "Role": "arn:aws:iam::334657772509:role/DynamoDBLambdaAccessRole"
             },
             "DependsOn": [
               "GetProductsListLogGroup"
@@ -205,42 +131,43 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/shop-app-backend/dev/1683163987866-2023-05-04T01:33:07.866Z/shop-app-backend.zip"
+                "S3Key": "serverless/shop-app-backend/dev/1684181826737-2023-05-15T20:17:06.737Z/shop-app-backend.zip"
               },
               "Handler": "handler.getProductsById",
               "Runtime": "nodejs12.x",
               "FunctionName": "shop-app-backend-dev-getProductsById",
               "MemorySize": 1024,
               "Timeout": 6,
-              "Role": {
-                "Fn::GetAtt": [
-                  "IamRoleLambdaExecution",
-                  "Arn"
-                ]
-              }
+              "Environment": {
+                "Variables": {
+                  "PRODUCTS_TABLE_NAME": "products",
+                  "STOCKS_TABLE_NAME": "stocks"
+                }
+              },
+              "Role": "arn:aws:iam::334657772509:role/DynamoDBLambdaAccessRole"
             },
             "DependsOn": [
               "GetProductsByIdLogGroup"
             ]
           },
-          "GetProductsListLambdaVersionQfrnepkKcVdF6zDkdVpvggfOLvcqpt6VvPyqwKdr3L0": {
+          "GetProductsListLambdaVersion3nntef3zcU9yW33dJtdMn4J8lJGYA6bedIs5w5CrQwA": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "GetProductsListLambdaFunction"
               },
-              "CodeSha256": "hSYibetIHcY8UTU0K/rSF1kEaiKUDELewm7DwFNihrc="
+              "CodeSha256": "UKaIgNLyWm2VfCyLiv09eA4p2PXHcCfAVgp9S4U6Jnc="
             }
           },
-          "GetProductsByIdLambdaVersiongQJKlLw7jt3hPFGqD9d1UZou1t2eHMMHrb92UL9bL8": {
+          "GetProductsByIdLambdaVersionuLtvMaP0YhU3YVht2FpgI3tL5RSdz2PPcFNUOrW7Ug": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "GetProductsByIdLambdaFunction"
               },
-              "CodeSha256": "hSYibetIHcY8UTU0K/rSF1kEaiKUDELewm7DwFNihrc="
+              "CodeSha256": "UKaIgNLyWm2VfCyLiv09eA4p2PXHcCfAVgp9S4U6Jnc="
             }
           },
           "ApiGatewayRestApi": {
@@ -480,7 +407,7 @@
               "Name": "shop-app-backend-dev | Validate request body and querystring parameters"
             }
           },
-          "ApiGatewayDeployment1683163986995": {
+          "ApiGatewayDeployment1684181825881": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -582,7 +509,7 @@
           "GetProductsListLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "GetProductsListLambdaVersionQfrnepkKcVdF6zDkdVpvggfOLvcqpt6VvPyqwKdr3L0"
+              "Ref": "GetProductsListLambdaVersion3nntef3zcU9yW33dJtdMn4J8lJGYA6bedIs5w5CrQwA"
             },
             "Export": {
               "Name": "sls-shop-app-backend-dev-GetProductsListLambdaFunctionQualifiedArn"
@@ -591,7 +518,7 @@
           "GetProductsByIdLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "GetProductsByIdLambdaVersiongQJKlLw7jt3hPFGqD9d1UZou1t2eHMMHrb92UL9bL8"
+              "Ref": "GetProductsByIdLambdaVersionuLtvMaP0YhU3YVht2FpgI3tL5RSdz2PPcFNUOrW7Ug"
             },
             "Export": {
               "Name": "sls-shop-app-backend-dev-GetProductsByIdLambdaFunctionQualifiedArn"
@@ -713,6 +640,10 @@
     "functions": {
       "getProductsList": {
         "handler": "handler.getProductsList",
+        "environment": {
+          "PRODUCTS_TABLE_NAME": "products",
+          "STOCKS_TABLE_NAME": "stocks"
+        },
         "events": [
           {
             "http": {
@@ -745,10 +676,14 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "GetProductsListLambdaVersionQfrnepkKcVdF6zDkdVpvggfOLvcqpt6VvPyqwKdr3L0"
+        "versionLogicalId": "GetProductsListLambdaVersion3nntef3zcU9yW33dJtdMn4J8lJGYA6bedIs5w5CrQwA"
       },
       "getProductsById": {
         "handler": "handler.getProductsById",
+        "environment": {
+          "PRODUCTS_TABLE_NAME": "products",
+          "STOCKS_TABLE_NAME": "stocks"
+        },
         "events": [
           {
             "http": {
@@ -786,7 +721,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "GetProductsByIdLambdaVersiongQJKlLw7jt3hPFGqD9d1UZou1t2eHMMHrb92UL9bL8"
+        "versionLogicalId": "GetProductsByIdLambdaVersionuLtvMaP0YhU3YVht2FpgI3tL5RSdz2PPcFNUOrW7Ug"
       }
     },
     "configValidationMode": "warn",
@@ -806,7 +741,7 @@
     "artifact": "/home/dzul/Projects/courses/AWS/repo/shop-app-backend/.serverless/shop-app-backend.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/shop-app-backend/dev/1683163987866-2023-05-04T01:33:07.866Z",
+    "artifactDirectoryName": "serverless/shop-app-backend/dev/1684181826737-2023-05-15T20:17:06.737Z",
     "artifact": "shop-app-backend.zip"
   }
 }
