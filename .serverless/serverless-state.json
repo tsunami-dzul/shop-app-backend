@@ -111,7 +111,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/shop-app-backend/dev/1684183444989-2023-05-15T20:44:04.989Z/shop-app-backend.zip"
+                "S3Key": "serverless/shop-app-backend/dev/1686871343301-2023-06-15T23:22:23.301Z/shop-app-backend.zip"
               },
               "Handler": "handler.getProductsList",
               "Runtime": "nodejs12.x",
@@ -137,7 +137,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/shop-app-backend/dev/1684183444989-2023-05-15T20:44:04.989Z/shop-app-backend.zip"
+                "S3Key": "serverless/shop-app-backend/dev/1686871343301-2023-06-15T23:22:23.301Z/shop-app-backend.zip"
               },
               "Handler": "handler.getProductsById",
               "Runtime": "nodejs12.x",
@@ -163,7 +163,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/shop-app-backend/dev/1684183444989-2023-05-15T20:44:04.989Z/shop-app-backend.zip"
+                "S3Key": "serverless/shop-app-backend/dev/1686871343301-2023-06-15T23:22:23.301Z/shop-app-backend.zip"
               },
               "Handler": "handler.createProducts",
               "Runtime": "nodejs12.x",
@@ -182,34 +182,34 @@
               "CreateProductsLogGroup"
             ]
           },
-          "GetProductsListLambdaVersionsTDEFl2QYFZ1tJydDTA5So5I5ggKLPOgIcOP2YbQYNY": {
+          "GetProductsListLambdaVersionC4AVP3bT079yolqL1czCmybBFOmnVkM8pYsxjUzswM": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "GetProductsListLambdaFunction"
               },
-              "CodeSha256": "UNRJh31w2yyGvFU/YvjDOozhH2UoDXroVfIbbM6dLMo="
+              "CodeSha256": "s7s1Fn7nGc7VGpLjwudpoNnGQThUVZd0a0R4b1A+B88="
             }
           },
-          "GetProductsByIdLambdaVersionCyjbZ7AFbDMb8t2vVqH0cjxOvvtcm4QqnpGNiDaM": {
+          "GetProductsByIdLambdaVersionAkXNKh2i2kfYSc1leCQfXpJtzlXVvAIF8FSu4CZb4s": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "GetProductsByIdLambdaFunction"
               },
-              "CodeSha256": "UNRJh31w2yyGvFU/YvjDOozhH2UoDXroVfIbbM6dLMo="
+              "CodeSha256": "s7s1Fn7nGc7VGpLjwudpoNnGQThUVZd0a0R4b1A+B88="
             }
           },
-          "CreateProductsLambdaVersionhXWDYuEVjIxxCej4CS4ZRC85uZTJ1ao4qg24Lkhg4": {
+          "CreateProductsLambdaVersionPpytXSeW1xwEj78jAxPVed2olvZ2JFQE3Zgd3Hebo": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "CreateProductsLambdaFunction"
               },
-              "CodeSha256": "UNRJh31w2yyGvFU/YvjDOozhH2UoDXroVfIbbM6dLMo="
+              "CodeSha256": "s7s1Fn7nGc7VGpLjwudpoNnGQThUVZd0a0R4b1A+B88="
             }
           },
           "ApiGatewayRestApi": {
@@ -495,7 +495,7 @@
               "Name": "shop-app-backend-dev | Validate request body and querystring parameters"
             }
           },
-          "ApiGatewayDeployment1684183444129": {
+          "ApiGatewayDeployment1686871339210": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -635,7 +635,7 @@
           "GetProductsListLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "GetProductsListLambdaVersionsTDEFl2QYFZ1tJydDTA5So5I5ggKLPOgIcOP2YbQYNY"
+              "Ref": "GetProductsListLambdaVersionC4AVP3bT079yolqL1czCmybBFOmnVkM8pYsxjUzswM"
             },
             "Export": {
               "Name": "sls-shop-app-backend-dev-GetProductsListLambdaFunctionQualifiedArn"
@@ -644,7 +644,7 @@
           "GetProductsByIdLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "GetProductsByIdLambdaVersionCyjbZ7AFbDMb8t2vVqH0cjxOvvtcm4QqnpGNiDaM"
+              "Ref": "GetProductsByIdLambdaVersionAkXNKh2i2kfYSc1leCQfXpJtzlXVvAIF8FSu4CZb4s"
             },
             "Export": {
               "Name": "sls-shop-app-backend-dev-GetProductsByIdLambdaFunctionQualifiedArn"
@@ -653,7 +653,7 @@
           "CreateProductsLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "CreateProductsLambdaVersionhXWDYuEVjIxxCej4CS4ZRC85uZTJ1ao4qg24Lkhg4"
+              "Ref": "CreateProductsLambdaVersionPpytXSeW1xwEj78jAxPVed2olvZ2JFQE3Zgd3Hebo"
             },
             "Export": {
               "Name": "sls-shop-app-backend-dev-CreateProductsLambdaFunctionQualifiedArn"
@@ -771,6 +771,9 @@
       },
       "vpc": {}
     },
+    "plugins": [
+      "serverless-lift"
+    ],
     "pluginsData": {},
     "functions": {
       "getProductsList": {
@@ -811,7 +814,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "GetProductsListLambdaVersionsTDEFl2QYFZ1tJydDTA5So5I5ggKLPOgIcOP2YbQYNY"
+        "versionLogicalId": "GetProductsListLambdaVersionC4AVP3bT079yolqL1czCmybBFOmnVkM8pYsxjUzswM"
       },
       "getProductsById": {
         "handler": "handler.getProductsById",
@@ -856,7 +859,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "GetProductsByIdLambdaVersionCyjbZ7AFbDMb8t2vVqH0cjxOvvtcm4QqnpGNiDaM"
+        "versionLogicalId": "GetProductsByIdLambdaVersionAkXNKh2i2kfYSc1leCQfXpJtzlXVvAIF8FSu4CZb4s"
       },
       "createProducts": {
         "handler": "handler.createProducts",
@@ -896,8 +899,12 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "CreateProductsLambdaVersionhXWDYuEVjIxxCej4CS4ZRC85uZTJ1ao4qg24Lkhg4"
+        "versionLogicalId": "CreateProductsLambdaVersionPpytXSeW1xwEj78jAxPVed2olvZ2JFQE3Zgd3Hebo"
       }
+    },
+    "resources": {
+      "Resources": {},
+      "Outputs": {}
     },
     "configValidationMode": "warn",
     "serviceFilename": "serverless.yml",
@@ -905,10 +912,77 @@
       "service": "shop-app-backend",
       "frameworkVersion": "3",
       "provider": {
-        "$ref": "$[\"service\"][\"provider\"]"
+        "name": "aws",
+        "runtime": "nodejs12.x",
+        "stage": "dev",
+        "region": "us-west-1",
+        "iam": {
+          "role": "arn:aws:iam::334657772509:role/DynamoDBLambdaAccessRole"
+        },
+        "versionFunctions": true
       },
       "functions": {
-        "$ref": "$[\"service\"][\"functions\"]"
+        "getProductsList": {
+          "handler": "handler.getProductsList",
+          "environment": {
+            "PRODUCTS_TABLE_NAME": "products",
+            "STOCKS_TABLE_NAME": "stocks"
+          },
+          "events": [
+            {
+              "http": {
+                "path": "products",
+                "method": "get",
+                "cors": true
+              }
+            }
+          ],
+          "name": "shop-app-backend-dev-getProductsList"
+        },
+        "getProductsById": {
+          "handler": "handler.getProductsById",
+          "environment": {
+            "PRODUCTS_TABLE_NAME": "products",
+            "STOCKS_TABLE_NAME": "stocks"
+          },
+          "events": [
+            {
+              "http": {
+                "path": "products/{productId}",
+                "method": "get",
+                "request": {
+                  "parameters": {
+                    "paths": {
+                      "productId": true
+                    }
+                  }
+                },
+                "cors": true
+              }
+            }
+          ],
+          "name": "shop-app-backend-dev-getProductsById"
+        },
+        "createProducts": {
+          "handler": "handler.createProducts",
+          "environment": {
+            "PRODUCTS_TABLE_NAME": "products",
+            "STOCKS_TABLE_NAME": "stocks"
+          },
+          "events": [
+            {
+              "http": {
+                "path": "products",
+                "method": "put",
+                "cors": true
+              }
+            }
+          ],
+          "name": "shop-app-backend-dev-createProducts"
+        }
+      },
+      "plugins": {
+        "$ref": "$[\"service\"][\"plugins\"]"
       }
     },
     "layers": {},
@@ -916,7 +990,7 @@
     "artifact": "/home/dzul/Projects/courses/AWS/repo/shop-app-backend/.serverless/shop-app-backend.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/shop-app-backend/dev/1684183444989-2023-05-15T20:44:04.989Z",
+    "artifactDirectoryName": "serverless/shop-app-backend/dev/1686871343301-2023-06-15T23:22:23.301Z",
     "artifact": "shop-app-backend.zip"
   }
 }

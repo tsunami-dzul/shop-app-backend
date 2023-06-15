@@ -7,41 +7,9 @@ provider:
   runtime: nodejs18.x
   stage: dev
   region: us-west-1
-# you can overwrite defaults here
-#  stage: dev
-#  region: us-east-1
 
-iam:
-  role: arn:aws:iam::334657772509:role/DynamoDBLambdaAccessRole
-# you can add statements to the Lambda function's IAM Role here
-#  iam:
-#    role:
-#      statements:
-#        - Effect: "Allow"
-#          Action:
-#            - "s3:ListBucket"
-#          Resource: { "Fn::Join" : ["", ["arn:aws:s3:::", { "Ref" : "ServerlessDeploymentBucket" } ] ]  }
-#        - Effect: "Allow"
-#          Action:
-#            - "s3:PutObject"
-#          Resource:
-#            Fn::Join:
-#              - ""
-#              - - "arn:aws:s3:::"
-#                - "Ref" : "ServerlessDeploymentBucket"
-#                - "/*"
-
-# you can define service wide environment variables here
-#  environment:
-#    variable1: value1
-
-# you can add packaging information here
-#package:
-#  patterns:
-#    - '!exclude-me.js'
-#    - '!exclude-me-dir/**'
-#    - include-me.js
-#    - include-me-dir/**
+  iam:
+    role: arn:aws:iam::334657772509:role/DynamoDBLambdaAccessRole
 
 constructs:
   catalogItemsQueue:
@@ -99,8 +67,19 @@ plugins:
 #      variable2: value2
 
 # you can add CloudFormation resource templates here
-#resources:
-#  Resources:
+resources:
+  Resources:
+    SNSCreateProduct:
+      Type: AWS::SNS::Topic
+      Properties:
+        TopicName: createProductTopic
+    SNSCreateProductSubscription:
+      Type: AWS::SNS::Subscription
+      Properties:
+        Endpoint: esdras_dzul@epam.com
+        Protocol: email
+        TopicArn:
+          Ref: SNSCreateProduct
 #    NewResource:
 #      Type: AWS::S3::Bucket
 #      Properties:
