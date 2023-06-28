@@ -1,0 +1,51 @@
+service: shop-app-backend
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  stage: dev
+  region: us-west-1
+
+  iam:
+    role: arn:aws:iam::334657772509:role/DynamoDBLambdaAccessRole
+
+functions:
+  getProductsList:
+    handler: handler.getProductsList
+    environment:
+      PRODUCTS_TABLE_NAME: products
+      STOCKS_TABLE_NAME: stocks
+    events:
+      - http:
+          path: products
+          method: get
+          cors: true
+  getProductsById:
+    handler: handler.getProductsById
+    environment:
+      PRODUCTS_TABLE_NAME: products
+      STOCKS_TABLE_NAME: stocks
+    events:
+      - http:
+          path: products/{productId}
+          method: get
+          request:
+            parameters:
+              paths:
+                productId: true
+          cors: true
+  createProducts:
+    handler: handler.createProducts
+    environment:
+      PRODUCTS_TABLE_NAME: products
+      STOCKS_TABLE_NAME: stocks
+    events:
+      - http:
+          path: products
+          method: put
+          cors: true
+
+plugins:
+  - serverless-lift
